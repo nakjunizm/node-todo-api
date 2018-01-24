@@ -27,7 +27,7 @@ app.post('/todos', (req, res) => {
 
 app.get('/todos', (req, res) => {
   Todo.find().then((todos) => {
-    res.send({todos});
+    res.status(200).send({todos});
   }, (e) => {
     res.status(400).send(e);
   });
@@ -44,7 +44,7 @@ app.get('/todos/:id', (req, res) => {
     if (!todo) {
       return res.status(404).send({});
     }
-    res.send({todo});
+    res.status(200).send({todo});
   }).catch((e) => {
     res.status(400).send();
   });
@@ -64,7 +64,7 @@ app.delete('/todos/:id', (req, res)=> {
     if (!doc) {
       return res.status(404).send();
     }
-    res.status(200).send(doc);
+    res.status(200).send({doc});
   }).catch(e => res.status(400).send());
 });
 
